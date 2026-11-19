@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="apple-touch-icon" sizes="180x180" type="image/png" href="https://marceloedeiaamendola-star.github.io/Mare-Mental/apple-touch-icon.png?v=2">
-<link rel="icon" type="image/png" sizes="180x180" href="https://marceloedeiaamendola-star.github.io/Mare-Mental/apple-touch-icon.png?v=2">
-<meta name="apple-mobile-web-app-title" content="Maré">
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Maré — energia mental</title>
@@ -97,14 +93,33 @@
   .btn-danger { background: #E5484D; color: #FFFFFF; box-shadow: 0 4px 14px rgba(229,72,77,0.32); }
   .export-note { font-size: 12px; color: var(--muted); text-align: center; margin: 4px 0 0; }
 
-  .donate-inline {
-    width: 100%; margin: -12px 0 18px; padding: 13px 16px;
-    border: 0; border-radius: 14px; background: #3E3A63; color: #fff;
-    box-shadow: 0 5px 18px rgba(32,31,42,.16);
-    font: 600 14px 'Work Sans', sans-serif; cursor: pointer;
-  } }
+  .donate-fab {
+    position: fixed; z-index: 20; right: max(16px, calc((100vw - 420px)/2 + 16px));
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    border: 0; border-radius: 999px; padding: 12px 17px;
+    background: #3E3A63; color: #fff; box-shadow: 0 5px 18px rgba(32,31,42,.22);
+    font: 600 13px 'Work Sans', sans-serif; cursor: pointer;
+  }
+  .donation-screen {
+    display: none; position: fixed; inset: 0; z-index: 50;
+    align-items: center; justify-content: center; overflow-y: auto;
+    padding: calc(24px + env(safe-area-inset-top,0px)) 20px calc(24px + env(safe-area-inset-bottom,0px));
+    background: var(--bg);
+  }
+  .donation-screen.open { display: flex; }
+  .donation-card {
+    width: 100%; max-width: 360px; text-align: center; padding: 26px 22px;
+    border-radius: 22px; background: var(--surface); box-shadow: var(--shadow);
+  }
+  .donation-card h1 { margin: 0 0 12px; font-size: 25px; }
+  .donation-card p { margin: 0 0 20px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+  .donation-card img { display: block; width: min(100%, 280px); height: auto; margin: 0 auto 22px; border-radius: 8px; }
+  .donation-back { background: #3E3A63; color: #fff; }
+  @media (max-width: 360px) { .donate-fab { right: 12px; padding: 10px 13px; } }
 
 </style>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Maré">
 </head>
 <body>
 <div class="screen">
@@ -112,7 +127,6 @@
   <div id="hoje" class="panel active">
     <p class="eyebrow" id="dateLine">Terça-feira</p>
     <h1>Como está sua maré hoje?</h1>
-    <button type="button" class="donate-inline" id="donateOpen" aria-label="Abrir tela de doação">♥ Apoie o Maré — Doar R$ 1</button>
 
     <div class="card">
       <h2>Energia mental agora</h2>
@@ -427,6 +441,7 @@
 })();
 </script>
 
+<button type="button" class="donate-fab" id="donateOpen" aria-label="Abrir tela de doação">♥ Doar R$ 1</button>
 <div class="donation-screen" id="donationScreen" role="dialog" aria-modal="true" aria-labelledby="donationTitle">
   <div class="donation-card">
     <h1 id="donationTitle">Apoie o Maré</h1>
